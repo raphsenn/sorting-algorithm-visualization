@@ -1,9 +1,4 @@
 # sorting-algorithm-visualization
-
-<div align="center">
-  <img src="./res/mergesort.gif" alt="gif">
-</div>
-
 ## Table of Contents 📖
 
 - [About the Project](#about-the-project)
@@ -19,6 +14,10 @@
 ## About the Project 📋
 
 This project is a sorting visualization application implemented in C++ using the SFML library. It provides a visual representation of various sorting algorithms such as Bubble Sort, Merge Sort, Quick Sort, and more. Users can interact with the application to see how these algorithms work on randomized input data.
+
+<div align="center">
+  <img src="./res/mergesort.gif" alt="gif">
+</div>
 
 ### Implemented Algorithms 🧮
 - Mergesort
