@@ -1,7 +1,7 @@
 # sorting-algorithm-visualization
 
 <div align="center">
-  <img src="./rsc/mergesort.gif" alt="gif">
+  <img src="./res/mergesort.gif" alt="gif">
 </div>
 
 ## Table of Contents 📖
