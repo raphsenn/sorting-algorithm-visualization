@@ -45,6 +45,7 @@ Before you begin, make sure you have the following tools and libraries installed
 - C++ compiler (e.g., g++)
 - SFML library <3
 - Google Test (for running tests)
+
 ### Installation with make 🔧
 
 #### Edit the Makefile
@@ -67,6 +68,7 @@ Replace "yourpath" with your own path.
 3. Compile the project using the provided Makefile:
 	```shell
 	make all
+
 ### Installation without make 🔧
 
 1. Clone the repository:
