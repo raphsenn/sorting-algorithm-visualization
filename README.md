@@ -37,12 +37,13 @@ Before you begin, make sure you have the following tools and libraries installed
 
 #### Edit the Makefile
 Before building the project, you'll need to edit the Makefile to specify the correct paths for the SFML library and include directories based on your system. Open the Makefile in a text editor and update the following lines:
-	```shell
-	# Compiler and Flags
+
+ ```js
 	CXX = g++
 	CXXFLAGS = -I/yourpath/sorting-algorithm-visualization/sfml/include -std=c++11
 	LDFLAGS = -L/yourpath/sorting-algorithm-visualization/sfml/lib
 	LIBS = -lsfml-graphics -lsfml-window -lsfml-system -Wl,-rpath,./sfml/lib/
+ ```
 Replace "yourpath" with your own path.
 
 1. Clone the repository:
@@ -63,17 +64,15 @@ Replace "yourpath" with your own path.
 2. Navigate to the project directory:
  	```shell
 	 cd sorting-algorithm-visualization
-3. Compile the project using the provided Makefile:
-	```shell
-	make all
-4. Compile the project (without Makefile):
-	```shell
+3. Compile the project (without Makefile):
+```js
 	g++ -I/yourpath/sorting-algorithm-visualization/sfml/include -std=c++11 -c application.cpp -o application.o
 	g++ -I/yourpath/sorting-algorithm-visualization/sfml/include -std=c++11 -c array.cpp -o array.o
 	g++ -I/yourpath/sorting-algorithm-visualization/sfml/include -std=c++11 -c main.cpp -o main.o
 	g++ -I/yourpath/sorting-algorithm-visualization/sfml/include -std=c++11 -c algorithms.cpp -o algorithms.o
 	g++ -I/yourpath/sorting-algorithm-visualization/sfml/include -std=c++11 -c buttons.cpp -o buttons.o
-5. Linking
+ ```
+4. Linking
 	```shell
     g++ -L/yourpath/sorting-algorithm-visualization/sfml/lib application.o array.o main.o algorithms.o buttons.o -o main -lsfml-graphics -lsfml-window -lsfml-system -Wl,-rpath,./sfml/lib/
 ### Usage 📋
