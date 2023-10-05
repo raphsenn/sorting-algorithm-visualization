@@ -1,7 +1,7 @@
 # Compiler and Flags
 CXX = g++
-CXXFLAGS = -I/Users/v/Desktop/sorting/sfml/include -std=c++14
-LDFLAGS = -L/Users/v/Desktop/sorting/sfml/lib
+CXXFLAGS = -I/yourpath/sorting-algorithm-visualization/sfml/include -std=c++14
+LDFLAGS = -L/yourpath/Desktop/sorting-algorithm-visualization/sfml/lib
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system -Wl,-rpath,./sfml/lib/
 
 # Test Compiler and Flags (for Google Test)
