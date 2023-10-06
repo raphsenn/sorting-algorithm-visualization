@@ -1,6 +1,6 @@
 # Compiler and Flags
 CXX = g++
-CXXFLAGS = -I/Users/yourpath/sorting-algorithm-visualization/sfml/include -std=c++11
+CXXFLAGS = -I/yourpath/sorting-algorithm-visualization/sfml/include -std=c++11
 LDFLAGS = -L/yourpath/sorting-algorithm-visualization/sfml/lib
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system -Wl,-rpath,./sfml/lib/
 
