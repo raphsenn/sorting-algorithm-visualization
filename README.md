@@ -60,7 +60,7 @@ Replace "yourpath" with your own path.
 
 1. Clone the repository:
 	```shell
-	git clone https://github.com/raphsenn/sorting-visualization.git
+	git clone https://github.com/raphsenn/sorting-algorithm-visualization.git
 2. Navigate to the project directory:
  	```shell
 	 cd sorting-algorithm-visualization
