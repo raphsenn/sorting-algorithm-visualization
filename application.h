@@ -4,9 +4,13 @@
 // Imports from standard libary.
 #include <algorithm>
 #include <random>
+#include <cstdio>
 
 // Import SFML libary.
 #include <SFML/Graphics.hpp>
+
+// Import Project files.
+#include "./algorithms.h"
 
 class Application{
 	private:
@@ -14,6 +18,7 @@ class Application{
 		int width;
 		int height;
 		sf::RenderWindow window;
+		sf::Event event;
 
 		// Array settings.
 		int arraySize;
@@ -23,6 +28,7 @@ class Application{
 		Application();
 		void simulate();
 		void update();
+		void input();
 		void shuff();
 		void draw();
 		void run();
