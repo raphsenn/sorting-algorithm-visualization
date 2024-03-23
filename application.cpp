@@ -10,10 +10,18 @@ Application::Application() : width(1024), height(768), window(sf::VideoMode(widt
   shuff();
   
   // Initialize algorithms map. 
-  algorithmsMap[0] = &Application::mergeSortCall;
-  algorithmsMap[1] = &Application::bubbleSort;
-  algorithmsMap[2] = &Application::minSort;
+  algorithmsMap[0] = {"MergeSort", &Application::mergeSortCall};
+  algorithmsMap[1] = {"BubbleSort", &Application::bubbleSort};
+  algorithmsMap[2] = {"MinSort", &Application::minSort};
   currentAlgorithm = 0; // = mergeSort.
+
+  // Load font.  
+  if (!font.loadFromFile("VarelaRound-Regular.ttf"))
+  {
+    printf("Error loading Font.");
+  }
+
+
 }
 
 void Application::draw()
@@ -32,6 +40,12 @@ void Application::draw()
     sf::sleep(sf::microseconds(10));
   }
   // Draw text.
+  sf::Text text;
+  text.setFont(font);
+  text.setString(std::get<0>(algorithmsMap[currentAlgorithm]));
+  text.setCharacterSize(24);
+  text.setFillColor(sf::Color::White);
+  window.draw(text); 
 }
 
 void Application::update()
@@ -68,7 +82,7 @@ void Application::input()
 
 void Application::executeCurrentAlgorithm()
 {
-  (this->*(algorithmsMap[currentAlgorithm]))(); 
+  (this->*(std::get<1>(algorithmsMap[currentAlgorithm])))(); 
 }
 
 void Application::selectNextAlgorithm()

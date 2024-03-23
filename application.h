@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <map>
 #include <string>
+#include <tuple>
 
 // Import SFML libary.
 #include <SFML/Graphics.hpp>
@@ -18,6 +19,7 @@ class Application{
     int height;
     sf::RenderWindow window;
     sf::Event event;
+    sf::Font font;
 
     // Array settings.
     int arraySize;
@@ -26,7 +28,8 @@ class Application{
     // Define a type for pointers to methods.
     typedef void (Application::*AlgorithmFunction)();
     // Map algorithm number to algorithm method.
-    std::map<int, AlgorithmFunction> algorithmsMap;
+    std::map<int, std::tuple<std::string, AlgorithmFunction>> algorithmsMap;
+    // std::map<int, AlgorithmFunction> algorithmsMap;
     int currentAlgorithm;    
 
     // Methods. 
