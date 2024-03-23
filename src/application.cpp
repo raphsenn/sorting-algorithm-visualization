@@ -20,8 +20,6 @@ Application::Application() : width(1024), height(768), window(sf::VideoMode(widt
   {
     printf("Error loading Font.");
   }
-
-
 }
 
 void Application::draw()
@@ -117,16 +115,18 @@ void Application::run() {
     while (window.pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
+      {
         window.close();
+      }
       input();
     }
       update();
   }
 }
 
-////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 // The Algorithms
-////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 
 void Application::minSort()
 {
@@ -239,5 +239,3 @@ void Application::mergeSortCall()
 {
   mergeSort(0, arraySize -1);
 }
-
-

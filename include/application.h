@@ -53,6 +53,5 @@ class Application{
     void merge(int low, int mid, int high);
     void mergeSort(int low, int high);
     void mergeSortCall();
-
 };
 #endif // APPLICATION_H
