@@ -5,6 +5,7 @@ This project is a sorting visualization application implemented in C++ using the
 <div align="center">
   <img src="./res/mergesort.gif" alt="gif">
 </div>
+(GIF with 10FPS and low Resolution, not accurate to the actual program)
 
 ### Implemented Algorithms 🧮
 - Mergesort
