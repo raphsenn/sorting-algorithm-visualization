@@ -40,15 +40,15 @@ Before building the project, you'll need to edit the Makefile to specify the cor
 Replace "yourpath" with your own path.
 
 ```js
-	CXX = g++
-	CXXFLAGS = -std=c++17 -Wall -Wextra -O2
-	LDFLAGS = -I/your-path-to/sfml/2.6.1/include
-	LIBS = -L/your-path-to/sfml/2.6.1/lib -lsfml-graphics -lsfml-window -lsfml-system
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -O2
+LDFLAGS = -I/your-path-to/sfml/2.6.1/include
+LIBS = -L/your-path-to/sfml/2.6.1/lib -lsfml-graphics -lsfml-window -lsfml-system
  ```
 
 4. Compile the project using the provided Makefile:
 ```js
-	make all
+make all
 ```
 
 5. Run program
@@ -70,13 +70,13 @@ cd sorting-algorithm-visualization
 
 3. Compile the project (without Makefile):
 ```js
-    g++ -std=c++17 -Wall -Wextra -O2 -I/your-path-to/sfml/2.6.1/include -Iinclude -c src/application.cpp -o application.o
-    g++ -std=c++17 -Wall -Wextra -O2 -I/your-path-to/sfml/2.6.1/include -Iinclude -c src/main.cpp -o main.o
+g++ -std=c++17 -Wall -Wextra -O2 -I/your-path-to/sfml/2.6.1/include -Iinclude -c src/application.cpp -o application.o
+g++ -std=c++17 -Wall -Wextra -O2 -I/your-path-to/sfml/2.6.1/include -Iinclude -c src/main.cpp -o main.o
 ```
 
 4. Linking
 ```js
-    g++ main.o application.o -o main -L/your-path-to/sfml/2.6.1/lib -lsfml-graphics -lsfml-window -lsfml-system
+g++ main.o application.o -o main -L/your-path-to/sfml/2.6.1/lib -lsfml-graphics -lsfml-window -lsfml-system
 ```
 
 5. Run program
