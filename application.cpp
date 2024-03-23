@@ -1,15 +1,19 @@
 #include "./application.h"
 
-Application::Application() : width(1024), height(768), window(sf::VideoMode(width, height), "SFML!"), arraySize(300) {
+Application::Application() : width(1024), height(768), window(sf::VideoMode(width, height), "SFML!"), arraySize(200)
+{
   // Allocate memory for the array.
   // Fill the array with numbers from 1 to 1001.
   // Shuffle the array.
   arrayPtr = new int[arraySize];
   for (int i = 0; i < arraySize; i++) { arrayPtr[i] = i + 1; }
   shuff();
-
-  // Create sfml window.
-  sf::RenderWindow window(sf::VideoMode(width, height), "SFML works!");
+  
+  // Initialize algorithms map. 
+  algorithmsMap[0] = &Application::mergeSortCall;
+  algorithmsMap[1] = &Application::bubbleSort;
+  algorithmsMap[2] = &Application::minSort;
+  currentAlgorithm = 0; // = mergeSort.
 }
 
 void Application::draw()
@@ -24,29 +28,63 @@ void Application::draw()
     bar.setFillColor(sf::Color::White);
     bar.rotate(-90);
     bar.move(i * barX, height);
-    window.draw(bar); 
+    window.draw(bar);
+    sf::sleep(sf::microseconds(10));
   }
+  // Draw text.
 }
 
 void Application::update()
 {
-  window.clear(sf::Color(173, 216, 230)); // Background color: LightBlue RGB=(173, 216, 230).
+  window.clear(sf::Color(0, 105, 148)); // Background color: SeaBlue RGB=(0, 105, 148).
+  // window.clear(sf::Color(173, 216, 230)); // Background color: LightBlue RGB=(173, 216, 230).
   draw();
   window.display();
 }
 
 void Application::input()
 {
-  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
+  if (event.type == sf::Event::KeyPressed)
   {
-    printf("pressed enter\n");
-    // minSort();
-    bubbleSort();
+    switch (event.key.code)
+    {
+      case sf::Keyboard::Enter:
+        executeCurrentAlgorithm();
+        break;
+          case sf::Keyboard::R:
+            shuff();
+            break;
+          case sf::Keyboard::Right:
+            selectNextAlgorithm();
+            break;
+          case sf::Keyboard::Left:
+            selectPreviousAlgorithm();
+            break;
+          default:
+            break;
+    }
   }
-  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::R) 
+}
+
+void Application::executeCurrentAlgorithm()
+{
+  (this->*(algorithmsMap[currentAlgorithm]))(); 
+}
+
+void Application::selectNextAlgorithm()
+{
+  currentAlgorithm = (currentAlgorithm + 1) % algorithmsMap.size();
+}
+
+void Application::selectPreviousAlgorithm()
+{
+  // Ensure currentAlgorithm is non-negative
+  if (currentAlgorithm > 0)
   {
-    printf("pressed delete\n");
-    shuff();
+    currentAlgorithm = (currentAlgorithm - 1) % algorithmsMap.size();
+  } else
+  {
+    currentAlgorithm = algorithmsMap.size() - 1;
   }
 }
 
@@ -79,36 +117,113 @@ void Application::run() {
 void Application::minSort()
 {
   int currentMin;
+  int currentMinIndex;
   int tmp;
   for (int i = 0; i < arraySize; i++)
   {
     currentMin = arrayPtr[i];
+    currentMinIndex = i;
     for (int j = i; j < arraySize; j++)
     {
       if (currentMin > arrayPtr[j])
       {
-        tmp = arrayPtr[i];
-        arrayPtr[i] = arrayPtr[j];
-        arrayPtr[j] = tmp;
+        currentMin = arrayPtr[j];
+        currentMinIndex = j; 
+        update(); 
+      }
+    }
+    // Perfrom swap. 
+    tmp = arrayPtr[i];
+    arrayPtr[i] = currentMin;
+    arrayPtr[currentMinIndex] = tmp;
+  }
+}
+
+void Application::bubbleSort()
+{
+  for (int i = 0; i < arraySize - 1; i++)
+  {
+    for (int j = 0; j < arraySize - i - 1; j++)
+    {
+      if (arrayPtr[j] > arrayPtr[j + 1])
+      {
+        // Swap elements if they are in the wrong order
+        int temp = arrayPtr[j];
+        arrayPtr[j] = arrayPtr[j + 1];
+        arrayPtr[j + 1] = temp;
         update(); // Update visualization after each swap
       }
     }
   }
 }
 
+void Application::merge(int low, int mid, int high)
+{
+  int n1 = mid - low + 1;
+  int n2 = high - mid;
 
-void Application::bubbleSort() {
-    for (int i = 0; i < arraySize - 1; i++) {
-        for (int j = 0; j < arraySize - i - 1; j++) {
-            if (arrayPtr[j] > arrayPtr[j + 1]) {
-                // Swap elements if they are in the wrong order
-                int temp = arrayPtr[j];
-                arrayPtr[j] = arrayPtr[j + 1];
-                arrayPtr[j + 1] = temp;
-                update(); // Update visualization after each swap
-            }
-        }
+  // Create temporary arrays
+  int L[n1], R[n2];
+
+  // Copy data to temporary arrays L[] and R[]
+  for (int i = 0; i < n1; i++)
+    L[i] = arrayPtr[low + i];
+  for (int j = 0; j < n2; j++)
+    R[j] = arrayPtr[mid + 1 + j];
+
+  // Merge the temporary arrays back into arrayPtr[low..high]
+  int i = 0, j = 0, k = low;
+  while (i < n1 && j < n2)
+  {
+    if (L[i] <= R[j])
+    {
+      arrayPtr[k] = L[i];
+      i++;
+    } else
+    {
+      arrayPtr[k] = R[j];
+      j++;
     }
+    k++;
+    update(); // Update visualization after each comparison
+    }
+    // Copy the remaining elements of L[], if there are any
+    while (i < n1)
+    {
+      arrayPtr[k] = L[i];
+      i++;
+      k++;
+      update(); // Update visualization after each comparison
+    }
+
+    // Copy the remaining elements of R[], if there are any
+    while (j < n2)
+    {
+      arrayPtr[k] = R[j];
+      j++;
+      k++;
+      update(); // Update visualization after each comparison
+    }
+}
+
+void Application::mergeSort(int low, int high) {
+  if (low < high)
+  {
+    // Find the middle point
+    int mid = low + (high - low) / 2;
+
+    // Sort first and second halves
+    mergeSort(low, mid);
+    mergeSort(mid + 1, high);
+
+    // Merge the sorted halves
+    merge(low, mid, high);
+  }
+}
+
+void Application::mergeSortCall()
+{
+  mergeSort(0, arraySize -1);
 }
 
 
