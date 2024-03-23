@@ -27,7 +27,7 @@ Before you begin, make sure you have the following tools and libraries installed
 #### Edit the Makefile
 Before building the project, you'll need to edit the Makefile to specify the correct paths for the SFML library and include directories based on your system. Open the Makefile in a text editor and update the following lines:
 
- ```c++
+ ```js
 	CXX = g++
 	CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 	LDFLAGS = -I/your-path-to/sfml/2.6.1/include
