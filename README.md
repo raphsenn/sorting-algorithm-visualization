@@ -22,6 +22,15 @@ Before you begin, make sure you have the following tools and libraries installed
 - SFML library <3
 - Google Test (for running tests)
 
+
+## Usage
+
+- **Shuffle the Array**: Press the "R" key to shuffle the array. This action will randomize the input data, providing a new set of elements for the sorting algorithms to work on.
+- **Start the Algorithm**: Press the "Enter" key to start the currently selected sorting algorithm. This will initiate the visualization of the sorting process using the chosen algorithm.
+- **Switch Algorithms**:
+  - Use the left arrow key to switch to the previous sorting algorithm in the list.
+  - Use the right arrow key to switch to the next sorting algorithm in the list.
+
 ### Installation with make
 
 1. Clone the repository:
