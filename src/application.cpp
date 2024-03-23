@@ -16,7 +16,7 @@ Application::Application() : width(1024), height(768), window(sf::VideoMode(widt
   currentAlgorithm = 0; // = mergeSort.
 
   // Load font.  
-  if (!font.loadFromFile("VarelaRound-Regular.ttf"))
+  if (!font.loadFromFile("res/VarelaRound-Regular.ttf"))
   {
     printf("Error loading Font.");
   }
