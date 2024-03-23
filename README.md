@@ -36,14 +36,20 @@ Before building the project, you'll need to edit the Makefile to specify the cor
 Replace "yourpath" with your own path.
 
 1. Clone the repository:
-	```shell
-	git clone https://github.com/raphsenn/sorting-algorithm-visualization.git
+```js
+git clone https://github.com/raphsenn/sorting-algorithm-visualization.git
+```
+Replace "yourpath" with your own path.
 2. Navigate to the project directory:
- 	```shell
-	 cd sorting-algorithm-visualization
+```js
+cd sorting-algorithm-visualization
+```
+Replace "yourpath" with your own path.
 3. Compile the project using the provided Makefile:
 	```shell
 	make all
+ ```
+Replace "yourpath" with your own path.
 
 ### Installation without make
 
